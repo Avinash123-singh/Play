@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,17 +54,45 @@
             border-bottom: 5px solid #ffcc00;
         }
 
+        /* ========== FIXED: Mobile responsive shadow & spacing ========== */
         .meme-question {
-            font-size: clamp(2.5rem, 11vw, 6rem);
+            font-size: clamp(2rem, 9vw, 6rem);
             font-weight: 900;
             color: #FFDD44;
-            text-shadow: 6px 6px 0px #c0392b, 3px 3px 0px #000;
             letter-spacing: 2px;
             margin-bottom: 20px;
             text-transform: uppercase;
             font-family: 'Impact', 'Arial Black', monospace;
             word-break: keep-all;
+            line-height: 1.2;
         }
+        
+        /* Laptop/Desktop view (screen width > 768px) - original shadow */
+        @media (min-width: 769px) {
+            .meme-question {
+                text-shadow: 6px 6px 0px #c0392b, 3px 3px 0px #000;
+            }
+        }
+        
+        /* Mobile view (screen width <= 768px) - reduced shadow, better spacing */
+        @media (max-width: 768px) {
+            .meme-question {
+                text-shadow: 3px 3px 0px #c0392b, 2px 2px 0px #000;
+                letter-spacing: 1px;
+                margin-bottom: 15px;
+                padding: 0 5px;
+            }
+        }
+        
+        /* Extra small devices (<= 480px) - even smaller shadow */
+        @media (max-width: 480px) {
+            .meme-question {
+                text-shadow: 2px 2px 0px #c0392b, 1px 1px 0px #000;
+                letter-spacing: 0.5px;
+                margin-bottom: 12px;
+            }
+        }
+        /* ========== END FIX ========== */
 
         .meme-sub {
             font-size: 1.2rem;
@@ -310,10 +337,43 @@
             pointer-events: none !important;
         }
 
-        @media (max-width: 650px) {
-            .meme-btn { font-size: 1.3rem; min-width: 130px; padding: 10px 18px; }
-            .button-group-meme { gap: 1rem; }
-            .dog-victory-text { font-size: 1.8rem; }
+        /* Button responsive for mobile */
+        @media (max-width: 768px) {
+            .meme-btn {
+                font-size: 1.4rem;
+                padding: 10px 20px;
+                min-width: 130px;
+            }
+            .button-group-meme {
+                gap: 1.2rem;
+            }
+            .meme-footer-text {
+                font-size: 1rem;
+                padding: 4px 18px;
+            }
+            .dog-victory-text {
+                font-size: 1.5rem;
+                padding: 4px 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .meme-btn {
+                font-size: 1.2rem;
+                padding: 8px 16px;
+                min-width: 110px;
+            }
+            .button-group-meme {
+                gap: 1rem;
+            }
+            .meme-sub {
+                font-size: 0.9rem;
+                padding: 4px 12px;
+            }
+            .dog-victory-text {
+                font-size: 1.2rem;
+                padding: 4px 12px;
+            }
         }
     </style>
 </head>
@@ -363,36 +423,32 @@
         const dogImg = document.getElementById('dogImageFinal');
 
         let isYesActivated = false;
-        let noFloatingActive = false;      // tracks when no button is in absolute floating mode
+        let noFloatingActive = false;
         let evasionActive = false;
         
         // ---------- IMAGE PATH (image/doglaugh.jpg) with fallback ----------
         dogImg.onerror = function() {
-            // fun meme fallback still shows dog pointing
             this.src = "https://media1.tenor.com/m/-JjW8KJ0hS4AAAAC/dog-pointing.gif";
             this.alt = "doglaugh missing but meme continues";
             console.warn("Make sure 'image/doglaugh.jpg' exists inside 'image' folder relative to html file.");
         };
         
-        // ---------- FUNCTION TO COMPLETELY HIDE NO BUTTON (when second page opens) ----------
+        // ---------- FUNCTION TO COMPLETELY HIDE NO BUTTON ----------
         function hideNoButtonCompletely() {
             if (noBtn) {
-                // Remove absolute positioning and hide completely
                 noBtn.classList.add('no-btn-hidden');
                 noBtn.style.display = 'none';
                 noBtn.style.visibility = 'hidden';
                 noBtn.style.pointerEvents = 'none';
-                // If it was floating and attached to body, it's fine, class will hide it
             }
         }
         
-        // ---------- NO BUTTON FLOATING MECHANISM (full screen escape) ----------
+        // ---------- NO BUTTON FLOATING MECHANISM ----------
         function makeNoButtonFloating() {
             if (noFloatingActive) return;
             if (isYesActivated) return;
             if (!noBtn) return;
             
-            // detach from flex container and append to body for absolute positioning
             document.body.appendChild(noBtn);
             noBtn.style.position = 'absolute';
             noBtn.style.margin = '0';
@@ -424,7 +480,6 @@
             if (!noFloatingActive) return;
             if (isYesActivated) return;
             if (!noBtn) return;
-            // Check if button is hidden, don't relocate
             if (noBtn.classList.contains('no-btn-hidden')) return;
             const { x, y } = getRandomViewportPos();
             noBtn.style.left = x + 'px';
@@ -463,7 +518,6 @@
         
         function bindNoEscape() {
             if (!noBtn) return;
-            // On mouseenter or touchstart, instantly convert to absolute floating mode
             noBtn.addEventListener('mouseenter', function(e) {
                 if (isYesActivated) return;
                 if (noBtn.classList.contains('no-btn-hidden')) return;
@@ -511,13 +565,9 @@
             if (isYesActivated) return;
             isYesActivated = true;
             
-            // 1. HIDE NO BUTTON COMPLETELY - IMPORTANT: second page pe nahi dikhega
             hideNoButtonCompletely();
-            
-            // 2. hide YES button visually
             yesBtn.classList.add('hide-yes-meme');
             
-            // 3. Door animation starting from YES button location
             const btnRect = yesBtn.getBoundingClientRect();
             const startX = btnRect.left + btnRect.width/2;
             const startY = btnRect.top + btnRect.height/2;
@@ -531,10 +581,8 @@
             doorContainer.style.height = '60px';
             doorContainer.style.borderRadius = '30px';
             
-            // force reflow
             doorContainer.offsetHeight;
             
-            // expand to big door
             doorContainer.style.width = '380px';
             doorContainer.style.height = '420px';
             doorContainer.style.borderRadius = '36px';
@@ -543,26 +591,20 @@
             doorContainer.style.transform = 'translate(-50%, -50%) scale(1)';
             
             setTimeout(() => {
-                // open door panels
                 if (leftDoor) leftDoor.style.transform = 'rotateY(-90deg)';
                 if (rightDoor) rightDoor.style.transform = 'rotateY(90deg)';
                 doorContainer.style.boxShadow = '0 0 0 8px #ffaa44, 0 30px 50px black';
                 
                 setTimeout(() => {
-                    // hide door container
                     doorContainer.style.visibility = 'hidden';
                     doorContainer.style.opacity = '0';
                     
-                    // 4. HIDE FIRST PAGE COMPLETELY
                     if (firstPage) {
                         firstPage.classList.add('hide-first');
                     }
                     
-                    // 5. SHOW FINAL DOG PAGE (image + text, no buttons at all)
                     dogImg.src = "image/doglaugh.jpg?" + Date.now();
                     dogFinalPage.classList.add('show');
-                    
-                    // 6. generate floating celebration memes
                     generateMemeConfetti();
                     
                 }, 550);
@@ -586,7 +628,6 @@
             }
         }
         
-        // ---- Door initial style ----
         function initDoorStyle() {
             if(leftDoor && rightDoor) {
                 leftDoor.style.transition = 'transform 0.55s ease-in-out';
@@ -600,7 +641,6 @@
             doorContainer.style.opacity = '0';
         }
         
-        // ---- Yes button event ----
         function bindYesAction() {
             yesBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -614,26 +654,22 @@
             });
         }
         
-        // ---- Preload check for image ----
         function preloadDogImage() {
             const testImg = new Image();
             testImg.onload = () => console.log("✅ doglaugh.jpg ready");
-            testImg.onerror = () => console.warn("⚠️ image/doglaugh.jpg not found, but meme spirit remains");
+            testImg.onerror = () => console.warn("⚠️ image/doglaugh.jpg not found");
             testImg.src = "image/doglaugh.jpg";
         }
         
-        // ---- Ensure that initial page has no overflow ----
         window.addEventListener('load', () => {
             initDoorStyle();
             bindNoEscape();
             bindYesAction();
             preloadDogImage();
             
-            // ensure first page visible, dog page hidden
             if (firstPage) firstPage.classList.remove('hide-first');
             dogFinalPage.classList.remove('show');
             
-            // set no button initial state (relative inside flex)
             if (noBtn) {
                 noBtn.style.position = 'relative';
                 noBtn.style.display = 'inline-flex';
@@ -641,7 +677,6 @@
             }
         });
         
-        // Additional safety: on window resize ensure no button stays in view (only if not hidden)
         window.addEventListener('resize', () => {
             if (noFloatingActive && !isYesActivated && noBtn && !noBtn.classList.contains('no-btn-hidden')) {
                 const { x, y } = getRandomViewportPos();
