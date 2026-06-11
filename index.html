@@ -36,7 +36,6 @@
             z-index: 20;
             background: radial-gradient(circle at 20% 30%, #2b2b2b, #0f0f0f);
             transition: opacity 0.5s ease, visibility 0.5s ease;
-            padding: 20px;
         }
 
         .first-page.hide-first {
@@ -48,8 +47,9 @@
         .meme-container {
             text-align: center;
             width: 90%;
-            max-width: 600px;
-            padding: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(3px);
             border-top: 5px solid #ffcc00;
@@ -58,23 +58,23 @@
         }
 
         .meme-question {
-            font-size: clamp(1.8rem, 8vw, 4rem);
+            font-size: clamp(1.8rem, 8vw, 6rem);
             font-weight: 900;
             color: #FFDD44;
-            text-shadow: 4px 4px 0px #c0392b, 2px 2px 0px #000;
+            text-shadow: 3px 3px 0px #c0392b, 2px 2px 0px #000;
             letter-spacing: 1px;
             margin-bottom: 15px;
             text-transform: uppercase;
             font-family: 'Impact', 'Arial Black', monospace;
-            word-break: break-word;
-            line-height: 1.2;
+            word-break: keep-all;
+            line-height: 1.3;
         }
 
         .meme-sub {
-            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            font-size: clamp(0.8rem, 3.5vw, 1.2rem);
             background: #222;
             display: inline-block;
-            padding: 6px 18px;
+            padding: 5px 15px;
             border-radius: 40px;
             color: #ffdd88;
             font-family: monospace;
@@ -85,24 +85,23 @@
             margin-bottom: 20px;
         }
 
-        /* BUTTON GROUP: FLEX SIDE BY SIDE - RESPONSIVE */
+        /* BUTTON GROUP: FLEX SIDE BY SIDE */
         .button-group-meme {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin: 20px 0 10px;
+            margin: 15px 0 10px;
             position: relative;
             z-index: 25;
-            padding: 0 10px;
         }
 
         /* Base button style - MEME BOLD */
         .meme-btn {
-            font-size: clamp(1.2rem, 5vw, 2rem);
+            font-size: clamp(1rem, 5vw, 2.2rem);
             font-weight: bold;
-            padding: 12px 20px;
+            padding: 10px 20px;
             min-width: 120px;
             border-radius: 60px;
             cursor: pointer;
@@ -110,24 +109,23 @@
             letter-spacing: 1px;
             transition: 0.1s linear;
             border: none;
-            box-shadow: 0 6px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 0px rgba(0, 0, 0, 0.3);
             text-transform: uppercase;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            flex: 0 1 auto;
         }
 
         .btn-yes-meme {
             background: linear-gradient(145deg, #2ecc71, #1f8a4c);
             color: white;
-            text-shadow: 2px 2px 0 #1f5a32;
-            border-bottom: 3px solid #f1c40f;
+            text-shadow: 1px 1px 0 #1f5a32;
+            border-bottom: 2px solid #f1c40f;
         }
 
         .btn-yes-meme:active {
-            transform: translateY(4px);
+            transform: translateY(3px);
             box-shadow: 0 2px 0px rgba(0,0,0,0.3);
         }
 
@@ -135,38 +133,38 @@
         .btn-no-meme {
             background: linear-gradient(145deg, #e74c3c, #a82313);
             color: white;
-            text-shadow: 2px 2px 0 #5a1e14;
-            border-bottom: 3px solid #ffcc44;
+            text-shadow: 1px 1px 0 #5a1e14;
+            border-bottom: 2px solid #ffcc44;
             position: relative;
             transition: left 0.1s cubic-bezier(0.2, 1.3, 0.8, 1), top 0.1s cubic-bezier(0.2, 1.3, 0.8, 1);
             z-index: 100;
         }
 
         .meme-footer-text {
-            margin-top: 25px;
-            font-size: clamp(0.8rem, 4vw, 1.1rem);
+            margin-top: 20px;
+            font-size: clamp(0.7rem, 3vw, 1.3rem);
             background: #1e1a0c;
             display: inline-block;
-            padding: 5px 18px;
+            padding: 5px 15px;
             border-radius: 60px;
             color: #ffbb55;
             font-family: 'Courier New', monospace;
             font-weight: bold;
-            border-left: 6px solid #ffaa33;
+            border-left: 5px solid #ffaa33;
             letter-spacing: 1px;
         }
 
-        /* DOOR ANIMATION (overlay) - RESPONSIVE */
+        /* DOOR ANIMATION (overlay) */
         .door-animation-container {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.8);
-            width: min(280px, 70vw);
-            height: min(280px, 70vw);
+            width: 280px;
+            height: 280px;
             background: #4a2e1a;
             border-radius: 20px;
-            box-shadow: 0 0 0 max(8px, 3vw) #ffb347, 0 25px 45px black;
+            box-shadow: 0 0 0 12px #ffb347, 0 25px 45px black;
             z-index: 200;
             opacity: 0;
             visibility: hidden;
@@ -201,8 +199,7 @@
             position: absolute;
             right: 15px;
             top: 50%;
-            font-size: clamp(20px, 6vw, 32px);
-            transform: translateY(-50%);
+            font-size: 32px;
             opacity: 0.9;
         }
         .door-right-panel::after {
@@ -210,12 +207,11 @@
             position: absolute;
             left: 15px;
             top: 50%;
-            font-size: clamp(20px, 6vw, 32px);
-            transform: translateY(-50%);
+            font-size: 32px;
             opacity: 0.9;
         }
 
-        /* FINAL DOG PAGE - LAST PAGE, NO BUTTONS - RESPONSIVE */
+        /* FINAL DOG PAGE - LAST PAGE, NO BUTTONS */
         .dog-final-page {
             position: fixed;
             top: 0;
@@ -232,7 +228,6 @@
             opacity: 0;
             transition: visibility 0.2s, opacity 0.6s ease;
             text-align: center;
-            padding: 20px;
         }
 
         .dog-final-page.show {
@@ -242,12 +237,12 @@
 
         .dog-card {
             background: #1f1b10;
-            padding: 20px;
-            border-radius: min(60px, 10vw);
+            padding: 15px;
+            border-radius: 40px;
             border: 4px solid #ffcc33;
-            box-shadow: 0 0 0 max(8px, 2vw) #9b6a2e, 0 25px 50px black;
+            box-shadow: 0 0 0 8px #9b6a2e, 0 25px 50px black;
             max-width: 90vw;
-            max-height: 90vh;
+            max-height: 85vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -262,10 +257,8 @@
 
         .dog-image {
             max-width: 85vw;
-            max-height: 55vh;
-            width: auto;
-            height: auto;
-            border-radius: min(48px, 8vw);
+            max-height: 60vh;
+            border-radius: 40px;
             border: 4px solid #ffbb44;
             box-shadow: 0 15px 35px rgba(0,0,0,0.7);
             object-fit: contain;
@@ -274,7 +267,7 @@
 
         .dog-victory-text {
             margin-top: 20px;
-            font-size: clamp(1.2rem, 6vw, 2rem);
+            font-size: clamp(1.2rem, 5vw, 2.8rem);
             font-weight: 900;
             font-family: 'Impact', monospace;
             background: linear-gradient(135deg, #FFD966, #FF8C42, #FF3B3F);
@@ -284,12 +277,10 @@
             text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
             letter-spacing: 1px;
             text-transform: uppercase;
-            padding: 8px 16px;
+            padding: 5px 15px;
             background-color: #2c1e0f;
             border-radius: 60px;
             display: inline-block;
-            text-align: center;
-            line-height: 1.3;
         }
 
         /* Floating celebration effect */
@@ -297,13 +288,13 @@
             position: fixed;
             pointer-events: none;
             z-index: 400;
-            font-size: clamp(20px, 6vw, 36px);
+            font-size: 28px;
             animation: floatMemesUp 2.2s forwards;
         }
 
         @keyframes floatMemesUp {
             0% { transform: translateY(0) scale(0.5); opacity: 1; }
-            100% { transform: translateY(-350px) scale(1.4); opacity: 0; }
+            100% { transform: translateY(-300px) scale(1.3); opacity: 0; }
         }
 
         /* Hide yes button after click */
@@ -321,11 +312,16 @@
             pointer-events: none !important;
         }
 
-        /* Mobile specific touch optimizations */
+        /* Mobile specific fine-tuning */
         @media (max-width: 480px) {
             .meme-container {
                 width: 95%;
-                padding: 1rem;
+                padding: 0.8rem;
+            }
+            
+            .meme-question {
+                text-shadow: 2px 2px 0px #c0392b, 1px 1px 0px #000;
+                margin-bottom: 10px;
             }
             
             .button-group-meme {
@@ -333,29 +329,46 @@
             }
             
             .meme-btn {
-                padding: 10px 16px;
+                padding: 8px 16px;
                 min-width: 100px;
             }
             
             .dog-card {
-                padding: 15px;
+                padding: 12px;
+                border-radius: 30px;
             }
             
             .dog-image {
-                max-height: 50vh;
+                border-radius: 30px;
+                max-height: 55vh;
+            }
+            
+            .door-animation-container {
+                transform: translate(-50%, -50%) scale(0.8);
+                width: 240px;
+                height: 240px;
+            }
+            
+            .door-left-panel::after,
+            .door-right-panel::after {
+                font-size: 24px;
             }
         }
 
-        /* Tablet specific */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .meme-container {
-                width: 85%;
-                max-width: 500px;
+        /* Small phones */
+        @media (max-width: 380px) {
+            .meme-btn {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+                min-width: 85px;
             }
             
-            .meme-btn {
-                padding: 12px 24px;
-                min-width: 140px;
+            .meme-question {
+                font-size: 1.5rem;
+            }
+            
+            .dog-victory-text {
+                margin-top: 12px;
             }
         }
     </style>
@@ -381,7 +394,7 @@
 <div id="doorContainerMeme" class="door-animation-container">
     <div class="door-left-panel" id="leftDoorMeme"></div>
     <div class="door-right-panel" id="rightDoorMeme"></div>
-    <div style="position: absolute; width:100%; height:100%; display: flex; align-items: center; justify-content: center; z-index:1; font-size: clamp(35px, 12vw, 55px); font-weight: bold; color:#ffcc66;">🚪</div>
+    <div style="position: absolute; width:100%; height:100%; display: flex; align-items: center; justify-content: center; z-index:1; font-size: 55px; font-weight: bold; color:#ffcc66;">🚪</div>
 </div>
 
 <!-- FINAL DOG PAGE (LAST PAGE - NO BUTTONS) -->
@@ -394,7 +407,7 @@
 
 <script>
     (function() {
-        // DOM Elements
+        // DOM elements
         const firstPage = document.getElementById('firstPage');
         const yesBtn = document.getElementById('yesMemeBtn');
         const noBtn = document.getElementById('noMemeBtn');
@@ -412,7 +425,7 @@
         dogImg.onerror = function() {
             this.src = "https://media1.tenor.com/m/-JjW8KJ0hS4AAAAC/dog-pointing.gif";
             this.alt = "doglaugh missing but meme continues";
-            console.warn("Make sure 'image/doglaugh.jpg' exists");
+            console.warn("Make sure 'image/doglaugh.jpg' exists inside 'image' folder");
         };
         
         // Hide NO button completely
@@ -447,10 +460,10 @@
             const h = window.innerHeight;
             if (!noBtn) return { x: 100, y: 100 };
             const btnRect = noBtn.getBoundingClientRect();
-            let btnW = btnRect.width || 120;
-            let btnH = btnRect.height || 55;
-            const maxX = Math.max(15, w - btnW - 20);
-            const maxY = Math.max(15, h - btnH - 20);
+            let btnW = btnRect.width || 100;
+            let btnH = btnRect.height || 50;
+            const maxX = Math.max(20, w - btnW - 20);
+            const maxY = Math.max(20, h - btnH - 20);
             let randX = Math.random() * maxX;
             let randY = Math.random() * maxY;
             randX = Math.min(maxX - 5, Math.max(10, randX));
@@ -467,44 +480,39 @@
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
             noBtn.style.transform = 'rotate(1deg)';
-            setTimeout(() => { 
-                if(noBtn && noFloatingActive && !noBtn.classList.contains('no-btn-hidden')) 
-                    noBtn.style.transform = ''; 
-            }, 100);
+            setTimeout(() => { if(noBtn && noFloatingActive && !noBtn.classList.contains('no-btn-hidden')) noBtn.style.transform = ''; }, 100);
         }
         
         function startGlobalEvasion() {
             if (evasionActive) return;
             evasionActive = true;
-            
-            const handleMove = (e) => {
+            document.addEventListener('mousemove', (e) => {
                 if (!noFloatingActive || isYesActivated) return;
                 if (!noBtn) return;
                 if (noBtn.classList.contains('no-btn-hidden')) return;
-                
-                let clientX, clientY;
-                if (e.touches) {
-                    clientX = e.touches[0].clientX;
-                    clientY = e.touches[0].clientY;
-                } else {
-                    clientX = e.clientX;
-                    clientY = e.clientY;
-                }
-                
                 const rect = noBtn.getBoundingClientRect();
                 const centerX = rect.left + rect.width/2;
                 const centerY = rect.top + rect.height/2;
-                const dist = Math.hypot(clientX - centerX, clientY - centerY);
+                const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
                 if (dist < 100) relocateNoAbsolute();
-            };
-            
-            document.addEventListener('mousemove', handleMove);
-            document.addEventListener('touchmove', handleMove);
+            });
+            document.addEventListener('touchmove', (e) => {
+                if (!noFloatingActive || isYesActivated) return;
+                if (!noBtn) return;
+                if (noBtn.classList.contains('no-btn-hidden')) return;
+                const touch = e.touches[0];
+                if (touch) {
+                    const rect = noBtn.getBoundingClientRect();
+                    const centerX = rect.left + rect.width/2;
+                    const centerY = rect.top + rect.height/2;
+                    const dist = Math.hypot(touch.clientX - centerX, touch.clientY - centerY);
+                    if (dist < 100) relocateNoAbsolute();
+                }
+            });
         }
         
         function bindNoEscape() {
             if (!noBtn) return;
-            
             noBtn.addEventListener('mouseenter', function(e) {
                 if (isYesActivated) return;
                 if (noBtn.classList.contains('no-btn-hidden')) return;
@@ -515,7 +523,6 @@
                     relocateNoAbsolute();
                 }
             });
-            
             noBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -528,7 +535,6 @@
                 relocateNoAbsolute();
                 return false;
             });
-            
             noBtn.addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 if (isYesActivated) return;
@@ -540,7 +546,6 @@
                     relocateNoAbsolute();
                 }
             });
-            
             window.addEventListener('resize', () => {
                 if (noFloatingActive && !isYesActivated && noBtn && !noBtn.classList.contains('no-btn-hidden')) {
                     const { x, y } = getRandomViewportPos();
@@ -550,7 +555,7 @@
             });
         }
         
-        // YES button door magic
+        // YES button magic
         function startDoorAndRevealDog() {
             if (isYesActivated) return;
             isYesActivated = true;
@@ -561,7 +566,6 @@
             const btnRect = yesBtn.getBoundingClientRect();
             const startX = btnRect.left + btnRect.width/2;
             const startY = btnRect.top + btnRect.height/2;
-            
             doorContainer.style.transition = 'all 0.45s cubic-bezier(0.2, 1.2, 0.3, 1)';
             doorContainer.style.left = startX + 'px';
             doorContainer.style.top = startY + 'px';
@@ -574,8 +578,8 @@
             
             doorContainer.offsetHeight;
             
-            doorContainer.style.width = 'min(380px, 80vw)';
-            doorContainer.style.height = 'min(420px, 80vh)';
+            doorContainer.style.width = 'min(380px, 85vw)';
+            doorContainer.style.height = 'min(420px, 85vw)';
             doorContainer.style.borderRadius = '36px';
             doorContainer.style.left = '50%';
             doorContainer.style.top = '50%';
