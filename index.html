@@ -54,7 +54,6 @@
             border-bottom: 5px solid #ffcc00;
         }
 
-        /* ========== FIXED: Mobile responsive shadow & spacing ========== */
         .meme-question {
             font-size: clamp(2rem, 9vw, 6rem);
             font-weight: 900;
@@ -67,14 +66,12 @@
             line-height: 1.2;
         }
         
-        /* Laptop/Desktop view (screen width > 768px) - original shadow */
         @media (min-width: 769px) {
             .meme-question {
                 text-shadow: 6px 6px 0px #c0392b, 3px 3px 0px #000;
             }
         }
         
-        /* Mobile view (screen width <= 768px) - reduced shadow, better spacing */
         @media (max-width: 768px) {
             .meme-question {
                 text-shadow: 3px 3px 0px #c0392b, 2px 2px 0px #000;
@@ -84,7 +81,6 @@
             }
         }
         
-        /* Extra small devices (<= 480px) - even smaller shadow */
         @media (max-width: 480px) {
             .meme-question {
                 text-shadow: 2px 2px 0px #c0392b, 1px 1px 0px #000;
@@ -92,7 +88,6 @@
                 margin-bottom: 12px;
             }
         }
-        /* ========== END FIX ========== */
 
         .meme-sub {
             font-size: 1.2rem;
@@ -109,7 +104,6 @@
             margin-bottom: 25px;
         }
 
-        /* BUTTON GROUP: FLEX SIDE BY SIDE */
         .button-group-meme {
             display: flex;
             justify-content: center;
@@ -121,7 +115,6 @@
             z-index: 25;
         }
 
-        /* Base button style - MEME BOLD */
         .meme-btn {
             font-size: 2.2rem;
             font-weight: bold;
@@ -153,7 +146,6 @@
             box-shadow: 0 2px 0px rgba(0,0,0,0.3);
         }
 
-        /* THE NO BUTTON - initially in flex, becomes absolute when floating */
         .btn-no-meme {
             background: linear-gradient(145deg, #e74c3c, #a82313);
             color: white;
@@ -178,7 +170,6 @@
             letter-spacing: 1px;
         }
 
-        /* DOOR ANIMATION (overlay) */
         .door-animation-container {
             position: fixed;
             top: 50%;
@@ -235,7 +226,6 @@
             opacity: 0.9;
         }
 
-        /* FINAL DOG PAGE - LAST PAGE, NO BUTTONS */
         .dog-final-page {
             position: fixed;
             top: 0;
@@ -279,13 +269,13 @@
             100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
 
-        .dog-image {
+        .dog-video {
             max-width: 85vw;
             max-height: 65vh;
             border-radius: 48px;
             border: 5px solid #ffbb44;
             box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-            object-fit: contain;
+            object-fit: cover;
             background: #00000066;
         }
 
@@ -308,7 +298,6 @@
             -webkit-text-stroke: 1px #00000055;
         }
 
-        /* Floating celebration effect */
         .floating-meme {
             position: fixed;
             pointer-events: none;
@@ -322,7 +311,6 @@
             100% { transform: translateY(-350px) scale(1.4); opacity: 0; }
         }
 
-        /* Hide yes button after click */
         .hide-yes-meme {
             opacity: 0;
             visibility: hidden;
@@ -330,14 +318,12 @@
             transition: 0.2s;
         }
 
-        /* Hide NO button completely when second page opens */
         .no-btn-hidden {
             display: none !important;
             visibility: hidden !important;
             pointer-events: none !important;
         }
 
-        /* Button responsive for mobile */
         @media (max-width: 768px) {
             .meme-btn {
                 font-size: 1.4rem;
@@ -379,13 +365,11 @@
 </head>
 <body>
 
-<!-- FIRST PAGE: QUESTION + BUTTONS (SIDE BY SIDE) -->
 <div class="first-page" id="firstPage">
     <div class="meme-container">
         <div class="meme-question">😂 BHAI TU EK NUMBER KA GANDU HAI NA? 😂</div>
         <div class="meme-sub">💀 SACHCHAI KA DARWAJA KHOLO 💀</div>
         
-        <!-- BUTTONS SIDE BY SIDE (FLEX) -->
         <div class="button-group-meme" id="memeButtonGroup">
             <button class="meme-btn btn-yes-meme" id="yesMemeBtn">✔️ HAAN</button>
             <button class="meme-btn btn-no-meme" id="noMemeBtn">❌ NAHI</button>
@@ -394,25 +378,25 @@
     </div>
 </div>
 
-<!-- DOOR OVERLAY ANIMATION -->
 <div id="doorContainerMeme" class="door-animation-container">
     <div class="door-left-panel" id="leftDoorMeme"></div>
     <div class="door-right-panel" id="rightDoorMeme"></div>
     <div style="position: absolute; width:100%; height:100%; display: flex; align-items: center; justify-content: center; z-index:1; font-size: 55px; font-weight: bold; color:#ffcc66;">🚪</div>
 </div>
 
-<!-- FINAL DOG PAGE (LAST PAGE - NO BUTTONS) -->
 <div id="dogFinalPage" class="dog-final-page">
     <div class="dog-card">
-        <img id="dogImageFinal" class="dog-image" alt="DOG LAUGH MEME" src="image/doglaugh.jpg">
+        <!-- VIDEO WITH AUDIO - plays with sound after user clicks YES -->
+        <video id="dogVideoFinal" class="dog-video" loop playsinline webkit-playsinline>
+            <source src="video/doglaugh.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="dog-victory-text">✨ DEKHA MAINE KAHA THA GANDU HAI TU ✨</div>
-        <!-- NO BUTTONS HERE - PURE DOG PAGE -->
     </div>
 </div>
 
 <script>
     (function() {
-        // ---------- DOM ELEMENTS ----------
         const firstPage = document.getElementById('firstPage');
         const yesBtn = document.getElementById('yesMemeBtn');
         const noBtn = document.getElementById('noMemeBtn');
@@ -420,20 +404,78 @@
         const leftDoor = document.getElementById('leftDoorMeme');
         const rightDoor = document.getElementById('rightDoorMeme');
         const dogFinalPage = document.getElementById('dogFinalPage');
-        const dogImg = document.getElementById('dogImageFinal');
+        const dogVideo = document.getElementById('dogVideoFinal');
 
         let isYesActivated = false;
         let noFloatingActive = false;
         let evasionActive = false;
+        let videoStarted = false;
         
-        // ---------- IMAGE PATH (image/doglaugh.jpg) with fallback ----------
-        dogImg.onerror = function() {
-            this.src = "https://media1.tenor.com/m/-JjW8KJ0hS4AAAAC/dog-pointing.gif";
-            this.alt = "doglaugh missing but meme continues";
-            console.warn("Make sure 'image/doglaugh.jpg' exists inside 'image' folder relative to html file.");
-        };
+        // ---------- VIDEO WITH AUDIO SUPPORT ----------
+        if (dogVideo) {
+            dogVideo.onerror = function() {
+                console.warn("⚠️ video/doglaugh.mp4 not found.");
+                const fallbackDiv = document.createElement('div');
+                fallbackDiv.innerHTML = '😂 VIDEO MISSING BUT MEME CONTINUES 😂<br>🐕 GANDU DOG SAYS HI 🐕';
+                fallbackDiv.style.color = '#ffcc33';
+                fallbackDiv.style.fontSize = '1.5rem';
+                fallbackDiv.style.padding = '20px';
+                fallbackDiv.style.textAlign = 'center';
+                dogVideo.parentNode.insertBefore(fallbackDiv, dogVideo);
+                dogVideo.style.display = 'none';
+            };
+        }
         
-        // ---------- FUNCTION TO COMPLETELY HIDE NO BUTTON ----------
+        // Function to play video with audio (called after user interaction)
+        function playVideoWithAudio() {
+            if (dogVideo && !videoStarted) {
+                videoStarted = true;
+                dogVideo.muted = false;  // Unmute for audio
+                dogVideo.volume = 1.0;
+                
+                // Reload and play
+                dogVideo.load();
+                dogVideo.play().then(() => {
+                    console.log("✅ Video playing with audio!");
+                }).catch((error) => {
+                    console.log("Autoplay blocked, trying fallback:", error);
+                    // Fallback: show play button overlay
+                    showPlayOverlay();
+                });
+            }
+        }
+        
+        // Fallback if browser blocks autoplay with audio
+        function showPlayOverlay() {
+            const card = document.querySelector('.dog-card');
+            if (card && !document.getElementById('playOverlayBtn')) {
+                const overlay = document.createElement('div');
+                overlay.id = 'playOverlayBtn';
+                overlay.style.position = 'absolute';
+                overlay.style.top = '0';
+                overlay.style.left = '0';
+                overlay.style.width = '100%';
+                overlay.style.height = '100%';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                overlay.style.borderRadius = '60px';
+                overlay.style.zIndex = '10';
+                overlay.style.cursor = 'pointer';
+                overlay.innerHTML = '<button style="background:#ffcc00; border:none; font-size:2rem; padding:15px 30px; border-radius:60px; font-weight:bold; cursor:pointer;">🔊 CLICK TO UNMUTE & PLAY 🔊</button>';
+                overlay.onclick = function() {
+                    dogVideo.muted = false;
+                    dogVideo.volume = 1.0;
+                    dogVideo.play();
+                    overlay.remove();
+                };
+                card.style.position = 'relative';
+                card.appendChild(overlay);
+            }
+        }
+        
+        // ---------- NO BUTTON FLOATING MECHANISM ----------
         function hideNoButtonCompletely() {
             if (noBtn) {
                 noBtn.classList.add('no-btn-hidden');
@@ -443,7 +485,6 @@
             }
         }
         
-        // ---------- NO BUTTON FLOATING MECHANISM ----------
         function makeNoButtonFloating() {
             if (noFloatingActive) return;
             if (isYesActivated) return;
@@ -560,7 +601,7 @@
             });
         }
         
-        // ---------- YES BUTTON DOOR MAGIC + FINAL DOG PAGE ----------
+        // ---------- YES BUTTON DOOR MAGIC + VIDEO WITH AUDIO ----------
         function startDoorAndRevealDog() {
             if (isYesActivated) return;
             isYesActivated = true;
@@ -603,8 +644,15 @@
                         firstPage.classList.add('hide-first');
                     }
                     
-                    dogImg.src = "image/doglaugh.jpg?" + Date.now();
+                    // Show the dog page
                     dogFinalPage.classList.add('show');
+                    
+                    // CRITICAL: Play video with audio after user clicked YES
+                    // This works because user interacted with the page (clicked Yes button)
+                    setTimeout(() => {
+                        playVideoWithAudio();
+                    }, 100);
+                    
                     generateMemeConfetti();
                     
                 }, 550);
@@ -654,18 +702,10 @@
             });
         }
         
-        function preloadDogImage() {
-            const testImg = new Image();
-            testImg.onload = () => console.log("✅ doglaugh.jpg ready");
-            testImg.onerror = () => console.warn("⚠️ image/doglaugh.jpg not found");
-            testImg.src = "image/doglaugh.jpg";
-        }
-        
         window.addEventListener('load', () => {
             initDoorStyle();
             bindNoEscape();
             bindYesAction();
-            preloadDogImage();
             
             if (firstPage) firstPage.classList.remove('hide-first');
             dogFinalPage.classList.remove('show');
@@ -674,6 +714,12 @@
                 noBtn.style.position = 'relative';
                 noBtn.style.display = 'inline-flex';
                 noBtn.classList.remove('no-btn-hidden');
+            }
+            
+            // Preload video but keep it muted initially
+            if (dogVideo) {
+                dogVideo.muted = true;
+                dogVideo.load();
             }
         });
         
